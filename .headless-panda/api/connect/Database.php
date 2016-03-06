@@ -38,5 +38,10 @@ class Database
 			return $array;
 		}
 	}
+
+	public function check_api_id($api){
+		//$api = mysqli_real_escape_string($this->conn, $api);
+		return true;
+	}
 }
 ?>

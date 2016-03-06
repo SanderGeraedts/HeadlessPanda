@@ -1,3 +1,4 @@
+<?php require_once('.headless-panda/config.php'); ?>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -26,9 +27,14 @@
 			</div>
 		</header>
 		<main>
-			<div class="wrapper">
-				Lorem ipsum dolor sit amet, consectetur adipisicing elit. In ipsum voluptates ratione minima cumque quibusdam consequuntur dolorum, laborum, animi doloribus reiciendis molestiae nisi! Dolore, aspernatur, similique! Veniam quisquam, odit eaque!
-			</div>
+			<div class="wrapper"><?php 
+					$params['test'] = 'Dit is een test'; 
+					$_POST['params'] = $params; 
+					$_POST['method'] = "test"; 
+					$_POST['api'] = "B"; 
+					include_once('.headless-panda/api/json.php'); 
+				?></div>
+				<?php echo hash('sha1', hash('sha512', 'lkdrfjadklsjsdakljf')); ?>
 		</main>
 		<footer>
 		</footer>
