@@ -1,8 +1,9 @@
 <?php
 
-public class Article{
+class Article implements JsonSerializable{
 	private $id;
 	private $title;
+	private $excerpt;
 	private $publish_date;
 	private $featured_img;
 	private $edit_dates;
@@ -10,8 +11,8 @@ public class Article{
 	private $editors;
 	private $categories;
 
-	private $fillable = array('title', 'publish_date', 'featured_img', 'edit_dates', 'author', 'editors', 'categories');
-	private $accessible = array('id', 'title', 'publish_date', 'featured_img', 'edit_dates', 'author', 'editors', 'categories');
+	private $fillable = array('title', 'excerpt', 'publish_date', 'featured_img', 'edit_dates', 'author', 'editors', 'categories');
+	private $accessible = array('id', 'title', 'excerpt', 'publish_date', 'featured_img', 'edit_dates', 'author', 'editors', 'categories');
 	private $required = array('id', 'title', 'author');
 
 	public function __set ($name, $value) {
@@ -45,6 +46,20 @@ public class Article{
 				}
 			}
 		}
+	}
+
+	public function jsonSerialize() {
+		return [
+			'id'=>$this->id,
+			'title'=>$this->title,
+			'excerpt'=>$this->excerpt,
+			'publish_date'=>$this->publish_date,
+			'featured_img'=>$this->featured_img,
+			'edit_dates'=>$this->edit_dates,
+			'author'=>$this->author,
+			'editors'=>$this->editors,
+			'categories'=>$this->categories
+		];
 	}
 }
 

@@ -40,8 +40,25 @@ class Database
 	}
 
 	public function check_api_id($api){
-		//$api = mysqli_real_escape_string($this->conn, $api);
+		$api = mysqli_real_escape_string($this->conn, $api);
 		return true;
+	}
+
+	public function get_all_articles(){
+		$sql = "SELECT * FROM HP_ARTICLE";
+
+		$command = @mysqli_query($this->conn, $sql);
+
+		$articles = array();
+
+		if($command) {
+			while($row = mysqli_fetch_array($command)) {
+				$article = new Article(array('id'=>$row['Id'], 'title'=>$row['Title'], 'excerpt'=>$row['Excerpt'], 'publish_date'=>$row['Publish_Date'], 'featured_img'=>$row['Featured_Img'], 'author'=>$row['Author_Id']));
+				array_push($articles, $article);
+			}
+		}
+
+		return $articles;
 	}
 }
 ?>

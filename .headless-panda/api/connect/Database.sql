@@ -79,14 +79,14 @@ CREATE TABLE HP_ITEM(
 	Item_Text		LONGTEXT 			NOT NULL,
 
 	CONSTRAINT 		UN_Order			UNIQUE(Article_Id, Item_Order),
-	CONSTRAINT 		CK_Item_Type		CHECK (UPPER(Item_Type) == 'PARAGRAPH' OR UPPER(Item_Type) == 'IMAGE' OR UPPER(Item_Type) == 'H1' OR UPPER(Item_Type) == 'H2' OR UPPER(Item_Type) == 'H3' OR UPPER(Item_Type) == 'H4' OR UPPER(Item_Type) == 'H5' OR UPPER(Item_Type) == 'H6' OR UPPER(Item_Type) == 'VIDEO' OR UPPER(Item_Type) == 'IFRAME')
+	CONSTRAINT 		CK_Item_Type		CHECK (UPPER(Item_Type) = 'PARAGRAPH' OR UPPER(Item_Type) = 'IMAGE' OR UPPER(Item_Type) = 'H1' OR UPPER(Item_Type) = 'H2' OR UPPER(Item_Type) = 'H3' OR UPPER(Item_Type) = 'H4' OR UPPER(Item_Type) = 'H5' OR UPPER(Item_Type) = 'H6' OR UPPER(Item_Type) = 'VIDEO' OR UPPER(Item_Type) = 'IFRAME'),
 	CONSTRAINT 		FK_Article_Id2 		FOREIGN KEY (Article_Id) REFERENCES HP_ARTICLE(Id)
 );
 
 CREATE TABLE HP_CATEGORY(
 	Id 				INT(10)				PRIMARY KEY auto_increment,
-	Parent_Id		INT(10)				NULL,
 	Site_Id 		INT(10)				NOT NULL,
+	Parent_Id		INT(10)				NULL,
 	Name 			VARCHAR(255)		NOT NULL,
 
 	CONSTRAINT 		FK_CategoryId1		FOREIGN KEY (Parent_Id) REFERENCES HP_CATEGORY(Id),
@@ -107,6 +107,7 @@ CREATE TABLE HP_APP(
 	Name 		 	VARCHAR(255)		NOT NULL,
 	Description 	LONGTEXT 			NULL,
 
+	CONSTRAINT 		UN_Name2 			UNIQUE(Site_Id, Name),
 	CONSTRAINT 		FK_Site_Id5 		FOREIGN KEY (Site_Id) REFERENCES HP_SITE(Id)
 );
 
@@ -139,4 +140,24 @@ INSERT INTO HP_ARTICLE(Author_Id, Site_Id, Title, Featured_Img) VALUES (1, 1, '1
 INSERT INTO HP_ITEM(Article_Id, Item_Type, Item_Order, Item_Text) VALUES (1, 'H1', 1, '10 Ways to improve your UX');
 INSERT INTO HP_ITEM(Article_Id, Item_Type, Item_Order, Item_Text) VALUES (1, 'PARAGRAPH', 2, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure necessitatibus sapiente excepturi vitae autem nesciunt saepe magnam nostrum animi, placeat. Quos, distinctio ipsam laboriosam cum deserunt necessitatibus id hic veniam.');
 
-#INSERT INTO HP_APP(Site_Id, Name, Description)
+INSERT INTO HP_APP(Id, Site_Id, Name, Description) VALUES ('c8c15339547d8d0c17f89f4a328efbe6ca52c6de', 1, 'Website', 'De website voor Code Panda.');
+INSERT INTO HP_APP(Id, Site_Id, Name, Description) VALUES ('74537749fed831b5c3969907a587c7a91f896683', 2, 'Website', 'De website voor VVNBest.');
+
+INSERT INTO HP_APP_LOG(App_Id, Method) VALUES ('c8c15339547d8d0c17f89f4a328efbe6ca52c6de', 'get_all_methods()');
+INSERT INTO HP_APP_LOG(App_Id, Method) VALUES ('c8c15339547d8d0c17f89f4a328efbe6ca52c6de', 'get_all_methods()');
+INSERT INTO HP_APP_LOG(App_Id, Method) VALUES ('c8c15339547d8d0c17f89f4a328efbe6ca52c6de', 'get_all_methods()');
+INSERT INTO HP_APP_LOG(App_Id, Method) VALUES ('c8c15339547d8d0c17f89f4a328efbe6ca52c6de', 'get_all_methods()');
+INSERT INTO HP_APP_LOG(App_Id, Method) VALUES ('c8c15339547d8d0c17f89f4a328efbe6ca52c6de', 'get_all_methods()');
+INSERT INTO HP_APP_LOG(App_Id, Method) VALUES ('c8c15339547d8d0c17f89f4a328efbe6ca52c6de', 'get_all_methods()');
+
+INSERT INTO HP_CATEGORY(Site_Id, Parent_Id, Name) VALUES (1, null, 'Blog');
+INSERT INTO HP_CATEGORY(Site_Id, Parent_Id, Name) VALUES (1, 1, 'UX');
+INSERT INTO HP_CATEGORY(Site_Id, Parent_Id, Name) VALUES (1, 1, 'Webdevelopment');
+INSERT INTO HP_CATEGORY(Site_Id, Parent_Id, Name) VALUES (1, 1, 'Startups');
+INSERT INTO HP_CATEGORY(Site_Id, Parent_Id, Name) VALUES (1, null, 'Portfolio');
+INSERT INTO HP_CATEGORY(Site_Id, Parent_Id, Name) VALUES (1, 5, 'Freelance');
+INSERT INTO HP_CATEGORY(Site_Id, Parent_Id, Name) VALUES (1, 5, 'Hobby');
+INSERT INTO HP_CATEGORY(Site_Id, Parent_Id, Name) VALUES (1, 5, 'School');
+
+INSERT INTO HP_ART_CAT(Article_Id, Category_Id) VALUES (1, 2);
+INSERT INTO HP_ART_CAT(Article_Id, Category_Id) VALUES (1, 4);

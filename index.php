@@ -28,13 +28,12 @@
 		</header>
 		<main>
 			<div class="wrapper"><?php 
-					$params['test'] = 'Dit is een test'; 
-					$_POST['params'] = $params; 
-					$_POST['method'] = "test"; 
-					$_POST['api'] = "B"; 
-					include_once('.headless-panda/api/json.php'); 
+					$_POST['method'] = "get_all_articles"; 
+					$_POST['api'] = "B";
+					include_once('.headless-panda/api/json.php');
+					$json = file_get_contents('.headless-panda/api/json.php');
+					echo $json;
 				?></div>
-				<?php echo hash('sha1', hash('sha512', 'lkdrfjadklsjsdakljf')); ?>
 		</main>
 		<footer>
 		</footer>
