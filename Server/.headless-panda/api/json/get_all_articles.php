@@ -6,7 +6,7 @@ require_once('../logic/Article.php');
 $handler = new JsonHandler();
 $_POST['api'] = "jkldjfdklm";
 
-if($handler->check_api_id($_POST['api'] )|| true){
+if($handler->check_api_id($_POST['api'] )){
 	$json = $handler->database->get_all_articles();
 	echo json_encode($json);
 } else {

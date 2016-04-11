@@ -1,7 +1,7 @@
 <?php 
 
-require_once('api/view/viewMain.php');
-$view = new viewMain();
+require_once('api/view/viewLogin.php');
+$view = new viewLogin();
 
  ?>
 <html>
@@ -17,5 +17,5 @@ $view = new viewMain();
 </head>
 <body>
 	<header><h1>Hello World</h1></header>
-	<p>Welcome at the Headless Panda Backend. Still a work in progress</p>
+	<p>Login screen!</p>
 </body></html>
