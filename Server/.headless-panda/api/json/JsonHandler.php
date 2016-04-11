@@ -1,5 +1,5 @@
 <?php
-require_once(HP_ROOT . '/api/connect/Database.php');
+require_once('../connect/Database.php');
 
 
 class JsonHandler {

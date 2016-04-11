@@ -1,1 +1,0 @@
-<?php define('HP_ROOT', __DIR__ . '/'); ?>

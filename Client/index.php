@@ -1,4 +1,6 @@
-<?php require_once('.headless-panda/config.php'); ?>
+<?php 
+	require_once('.headless-panda/HeadlessPanda.php');
+?>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -28,11 +30,11 @@
 		</header>
 		<main>
 			<div class="wrapper"><?php 
-					$_POST['method'] = "get_all_articles"; 
-					$_POST['api'] = "B";
-					include_once('.headless-panda/api/json.php');
-					$json = file_get_contents('.headless-panda/api/json.php');
-					echo $json;
+					$articles = HeadlessPanda::get_all_articles();
+					foreach($articles as $article){
+						echo '<h1>' . $article->title . '</h1>';
+						echo '<p>' . $article->excerpt . '</p>';
+					}
 				?></div>
 		</main>
 		<footer>

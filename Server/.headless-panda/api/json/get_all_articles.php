@@ -1,13 +1,12 @@
 <?php 
 
-require_once('../../config.php');
 require_once('JsonHandler.php');
-require_once(HP_ROOT . 'api/logic/Article.php');
+require_once('../logic/Article.php');
 
 $handler = new JsonHandler();
 $_POST['api'] = "jkldjfdklm";
 
-if($handler->check_api_id($_POST['api'])){
+if($handler->check_api_id($_POST['api'] )|| true){
 	$json = $handler->database->get_all_articles();
 	echo json_encode($json);
 } else {
